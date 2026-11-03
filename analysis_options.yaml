@@ -1,0 +1,5 @@
+analyzer:
+  errors:
+    prefer_constructors_over_static_methods: ignore
+    public_member_api_docs: ignore
+include: package:dart_frog_lint/recommended.yaml
