@@ -277,7 +277,7 @@ class AuthController {
     }
   }
 
-  // 
+  //
   Future<Response> currentUserProfile(RequestContext context) async {
     final authorization = context.request.headers['authorization'];
     const prefix = 'Bearer ';

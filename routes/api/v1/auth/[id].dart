@@ -4,12 +4,12 @@ import 'package:doctor_appointment_api/utils/api_response.dart';
 
 Future<Response> onRequest(
   RequestContext context,
-  String path,
+  String id,
 ) async {
-  final endpoint = path.split('/').where((part) => part.isNotEmpty).lastOrNull;
+  final controller = context.read<AuthController>();
 
-  if (endpoint == 'me' && context.request.method == HttpMethod.get) {
-    return context.read<AuthController>().currentUserProfile(context);
+  if (id == 'me' && context.request.method == HttpMethod.get) {
+    return controller.currentUserProfile(context);
   }
 
   if (context.request.method != HttpMethod.post) {
@@ -18,9 +18,8 @@ Future<Response> onRequest(
       message: 'Method not allowed.',
     );
   }
-  final controller = context.read<AuthController>();
 
-  switch (endpoint) {
+  switch (id) {
     case 'register':
       return controller.register(context);
     case 'login':
